@@ -210,13 +210,17 @@ pop_vs_soda %>%
 
 ```{r}
 pop_vs_soda %>% 
-  tabyl(word_for_cola, type)
-
-
-fake_news %>% 
-  tabyl(title_has_excl, type) %>% 
-  adorn_percentages("col") 
+  tabyl(word_for_cola, region) %>% 
+  adorn_percentages("col")
 ```
+
+L(M\|A) = 0.64
+
+L(N\|A) = 0.27
+
+L(S\|A)
+
+LW\|A)
 
 3\) Build a posterior probability model determining the probability that the person is from the south based on using the word "pop": P(S\|A)
 
