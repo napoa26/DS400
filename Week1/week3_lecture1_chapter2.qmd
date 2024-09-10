@@ -184,16 +184,14 @@ pop_vs_soda %>%
 
     -   P(S) = 0.24
 
-```{=html}
 <!-- -->
-```
+
 -   Letting N denote the person is from the northeast
 
     -   P(N) = 0.21
 
-```{=html}
 <!-- -->
-```
+
 -   Letting W denote the person is from the west
 
     -   P(W) = 0.17
@@ -228,4 +226,72 @@ LW\|A)
 
 ```
 
-\
+10 September 2024: Lecture
+
+Pop vs Soda - In Class
+
+```{r}
+# Load the data
+data(pop_vs_soda)
+
+# Summarize pop use by region
+pop_vs_soda %>% 
+  tabyl(pop, region) %>% 
+  adorn_percentages("col")
+```
+
+Note: "tidy data" = 1 observation per row, as seen above
+
+Exploratory Analysis and Visual
+
+```{r}
+ggplot(data = pop_vs_soda, aes(x = region,
+                               fill = pop)) +
+  geom_bar()
+```
+
+1\) Prior Probability
+
+```{r}
+priors <- c(
+  midwest = 0.21,
+  north = 0.17,
+  south = 0.38,
+  west = 0.24
+)
+```
+
+2\) Regional Likelihoods
+
+```{r}
+pop_vs_soda %>% 
+  tabyl(pop, region) %>% 
+adorn_percentages("col")
+
+likelihoods <- pop_vs_soda %>% 
+  tabyl(pop, region) %>% 
+adorn_percentages("col") %>% 
+  filter(pop = TRUE) %>% 
+  select(-pop) %>% 
+  unlist()
+
+likelihoods
+```
+
+3\) Marginal Prior Probability that a Person uses the Word "Pop"
+
+```{r}
+prior_probability_says_pop <- sum(priors * likelihoods)
+prior_probability_says_pop
+```
+
+```{r}
+pop_vs_soda %>% 
+  tabyl(pop)
+```
+
+4\) Finding our Posterior Probability P(S\|A)
+
+```{r}
+(priors[3] * likelihoods[3]) / prior_probability_says_pop
+```
