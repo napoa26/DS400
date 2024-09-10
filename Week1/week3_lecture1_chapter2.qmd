@@ -226,9 +226,9 @@ LW\|A)
 
 ```
 
-10 September 2024: Lecture
+### 10 September 2024: Lecture
 
-Pop vs Soda - In Class
+### Pop vs Soda - In Class
 
 ```{r}
 # Load the data
@@ -259,6 +259,7 @@ priors <- c(
   south = 0.38,
   west = 0.24
 )
+priors
 ```
 
 2\) Regional Likelihoods
@@ -267,11 +268,15 @@ priors <- c(
 pop_vs_soda %>% 
   tabyl(pop, region) %>% 
 adorn_percentages("col")
+```
+
+```{r}
+
 
 likelihoods <- pop_vs_soda %>% 
   tabyl(pop, region) %>% 
-adorn_percentages("col") %>% 
-  filter(pop = TRUE) %>% 
+  adorn_percentages("col") %>% 
+  filter(pop == "TRUE") %>% 
   select(-pop) %>% 
   unlist()
 
@@ -294,4 +299,9 @@ pop_vs_soda %>%
 
 ```{r}
 (priors[3] * likelihoods[3]) / prior_probability_says_pop
+```
+
+```{r}
+pop_vs_soda %>% 
+  tabyl(region)
 ```
