@@ -83,12 +83,54 @@ df <- df %>%
 ```
 
 2.  Do some exploratory data analysis
-3.  Determine the prior probability that someone has diabetes (DIQ010)
+
+```{r}
+df
+```
+
+2.  Determine the prior probability that someone has diabetes (DIQ010)
     -   P(B)
-4.  Determine the prior probability that someone eats tuna (DRD370B)
+
+```{r}
+#df <- DIQ010(type = c())
+
+
+df %>% 
+  tabyl(DIQ010) %>% 
+  adorn_totals("row")
+```
+
+2.  Determine the prior probability that someone eats tuna (DRD370B)
     -   P(A)
-5.  Determine the likelihood of eating tuna and having diabetes
+
+```{r}
+df %>% 
+  tabyl(DRD370B) %>% 
+  adorn_totals("row")
+```
+
+2.  Determine the likelihood of eating tuna and having diabetes
     -   L(B\|A)
-6.  Determine posterior probability via bayes theorem
+
+```{r}
+df %>% 
+  tabyl(DIQ010, DRD370B) %>% 
+  adorn_percentages("col") 
+```
+
+2.  Determine posterior probability via bayes theorem
     -   P(B\|A)
-7.  What other questions can we ask of this data?
+
+```{r}
+dr_said_you_have_tiid <- 0.1292593
+
+likelihood_eats_ahi_has_tiid <- 0.1278689
+```
+
+```{r}
+df %>% 
+  tabyl(dr_said_you_have_tiid, likelihood_eats_ahi_has_tiid) %>% 
+  adorn_percentages("col") 
+```
+
+2.  What other questions can we ask of this data?
