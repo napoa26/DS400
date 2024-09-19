@@ -78,7 +78,7 @@ Percent of articles fake vs real
 ```{r}
 fake_news %>% 
   tabyl(type) %>% 
-  adorn_totals("row")
+  adorn_totals("col")
 
 ```
 
@@ -305,3 +305,7 @@ pop_vs_soda %>%
 pop_vs_soda %>% 
   tabyl(region)
 ```
+
+## 17 September 2024
+
+### More on Probability and Likelihood
