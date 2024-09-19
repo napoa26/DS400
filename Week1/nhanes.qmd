@@ -122,9 +122,9 @@ df %>%
     -   P(B\|A)
 
 ```{r}
-dr_said_you_have_tiid <- 0.1292593
+dr_said_you_have_tiid <- 0.13
 
-likelihood_eats_ahi_has_tiid <- 0.1278689
+likelihood_eats_ahi_has_tiid <- 0.13
 ```
 
 ```{r}
@@ -173,7 +173,7 @@ df %>%
 ```
 
 ```{r}
-probability_consumes_ahi <- 0.36
+likelihood_eats_ahi_has_tiid <- 0.36
 ```
 
 #### P(A)
@@ -190,10 +190,8 @@ df %>%
 #### P(B\|A)
 
 ```{r}
-(probability_has_diabetes * probability_consumes_ahi
-```
-
-```{}
+(probability_has_diabetes * likelihood_eats_ahi_has_tiid /
+    probability_consumes_ahi)
 ```
 
 ### Diabetes and Age
@@ -221,4 +219,7 @@ ggplot(nhanes_data, aes(x = RIDAGEYR, fill =  DIQ010)) +
 
 #### P(B\|A)
 
--   
+```{r}
+(probability_has_diabetes * likelihood_over_40_has_tiid /
+    probability_being_over_40)
+```
